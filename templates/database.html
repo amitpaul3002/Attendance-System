@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Database</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="db-body">
+  <div class="container">
+    <h2>Student Database</h2>
+
+    <main>
+      {% for student, images in students.items() %}
+        <article class="student-section">
+          <h3>{{ student }}</h3>
+          <div class="image-grid">
+            {% for image in images %}
+              <img src="{{ image }}" alt="Photo of {{ student }}" class="student-img" loading="lazy" />
+            {% endfor %}
+          </div>
+        </article>
+      {% endfor %}
+    </main>
+
+    <a href="{{ url_for('dashboard') }}" class="back-btn">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

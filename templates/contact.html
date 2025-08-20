@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact - Attendance Monitor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .content-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .contact-info {
+      margin-top: 20px;
+    }
+    .header-nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 10px 20px;
+      background: #f0f0f0;
+    }
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: #f0ededff;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+    }
+    .header-link {
+      text-decoration: none;
+      color: #333;
+    }
+    .site-name {
+      font-size: 1.4em;
+    }
+    .back-button {
+        display: block;
+        width: fit-content;
+        margin: 30px auto;
+        padding: 12px 25px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+<header class="dashboard-header">
+  <div class="site-name">Attendance Monitor</div>
+  <nav class="header-nav">
+    <a href="{{ url_for('about') }}" class="header-link">About</a>
+    <a href="{{ url_for('contact') }}" class="header-link">Contact</a>
+  </nav>
+</header>
+
+<div class="content-container">
+  <h2>Contact Us</h2>
+  <p>If you have questions, suggestions, or need support, feel free to reach out:</p>
+  <div class="contact-info">
+    <p>Email: <a href="mailto:2amit2pal@gmail.com">2amit2pal@gmail.com</a></p>
+    <p>Phone: +91-9609924775</p>
+  </div>
+  <p><a href="{{ url_for('dashboard') }}"class="back-button">Back to Dashboard</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Result</title>
+    <style>
+    .back-button {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+
+</head>
+<body>
+  <h1>Attendance Result</h1>
+
+  {% if image_exists %}
+    <img src="{{ url_for('static', filename='result.jpg') }}" 
+         alt="Result Image" 
+         style="max-width:600px; height:auto;" />
+  {% else %}
+    <p>Please upload an image first — no result available yet.</p>
+  {% endif %}
+
+  <br>
+    <a href="{{ url_for('download_attendance_csv') }}" class="back-button">Download Attendance CSV</a>
+  <br>
+    <a href="{{ url_for('dashboard') }}" class="back-button">← Back to Dashboard</a>
+</body>
+</html>
+

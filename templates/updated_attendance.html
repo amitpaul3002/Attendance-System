@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Attendance Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Basic styling for the table to make it readable */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            white-space: nowrap; /* Prevent date headers from wrapping */
+        }
+        th {
+            background-color: #e9e9e9;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            color: #555;
+        }
+        td {
+            font-size: 0.9em;
+        }
+        .present {
+            color: green;
+            font-weight: bold;
+            text-align: center;
+        }
+        .absent {
+            color: red;
+            text-align: center;
+        }
+        .na { /* For 'N/A' if a student was added later */
+            color: #888;
+            font-style: italic;
+            text-align: center;
+        }
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h2>Daily Attendance Register</h2>
+    {% if attendance %}
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for header in headers %}
+                        <th>{{ header }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in attendance %}
+                    <tr>
+                        {% for header in headers %}
+                            {# Default to 'N/A' if a header (date) is not present for a student (e.g., new student) #}
+                            {% set cell_value = row.get(header, 'N/A') %}
+                            <td class="
+                                {% if cell_value == 'Present' %}present
+                                {% elif cell_value == 'Absent' %}absent
+                                {% else %}na
+                                {% endif %}
+                            ">
+                                {{ cell_value }}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No attendance data available yet. Please ensure 'data.csv' exists and upload a group photo to mark attendance.</p>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('dashboard') }}" class="back-button">Back to Dashboard</a>
+</body>
+</html>

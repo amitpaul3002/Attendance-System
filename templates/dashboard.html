@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Add some basic styling for your cards if not in style.css */
+        .dashboard-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+        .card {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 250px; /* Adjust as needed */
+            height: 150px; /* Adjust as needed */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+        }
+        .upload-form label {
+            cursor: pointer;
+        }
+        .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .dashboard-footer {
+            background-color: #080808ff;
+            text-align: left;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #eeeeee9d;
+            color: #e9d7d7c0;
+        }
+        .dashboard-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px 30px;
+          background-color: #f8f8f8;
+          border-bottom: 1px solid #ddd;
+          font-family: Arial, sans-serif;
+        }
+
+        .site-name {
+          font-size: 1.5em;
+          font-weight: bold;
+          color: #333;
+        }
+
+        .header-nav {
+          display: flex;
+          gap: 20px;
+        }
+
+        .header-link {
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          transition: color 0.2s;
+        }
+
+        .header-link:hover {
+          color: #007BFF; /* blue on hover */
+        }
+
+
+    </style>
+</head>
+<body>
+  <header class="dashboard-header">
+  <div class="site-name">Attendance Monitor System</div>
+  <nav class="header-nav">
+    <a href="{{ url_for('about') }}" class="header-link">About</a>
+    <a href="{{ url_for('contact') }}" class="header-link">Contact</a>
+  </nav>
+</header>
+
+<main class="dashboard-cards">
+  <form method="POST" enctype="multipart/form-data" action="/dashboard" class="card upload-form" style="cursor: pointer;">
+    <label for="imageInput" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; margin: 0;">
+      <div class="icon">📷</div>
+      <p>Upload Group Photo</p>
+      <input
+        id="imageInput"
+        type="file"
+        name="image"
+        accept="image/*"
+        required
+        onchange="this.form.submit()"
+        hidden
+      />
+    </label>
+  </form>
+
+  <a href="{{ url_for('view_database') }}" class="card"><div class="icon">🖼</div><div>Student Image Database</div></a>
+  <a href="{{ url_for('result') }}" class="card"><div class="icon">📈</div>Attendance Reports</a>
+
+  <a href="{{ url_for('view_attendance_page') }}" class="card"><div class="icon">📊</div>View Daily Attendance</a>
+  <a href="{{ url_for('total_attendance') }}" class="card"><div class="icon">🙋🏻</div>View Total Attendance Summary</a>
+
+  <a href="{{ url_for('download_attendance_csv') }}" class="card"><div class="icon">⬇</div>Download Full Attendance CSV</a> 
+
+</main>
+
+<footer class="dashboard-footer">
+  
+  <section>
+    <h3>Contact</h3>
+    <p>For support, contact: <a href="mailto:2amit2pal@gmail.com">2amit2pal@gmail.com</a></p>
+    <p>Phone: +91 9609924775</p>
+  </section>
+</footer>
+
+
+</body>
+</html>
